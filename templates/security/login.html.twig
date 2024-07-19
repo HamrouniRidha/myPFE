@@ -1,0 +1,133 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-abcdefghijklmnopqrstuvwxyz" crossorigin="anonymous"/>
+	<style>
+		.form-signin {
+			max-width: 550px;
+
+
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f8f9fa;
+			border: 1px solid #dee2e6;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		}
+
+		.form-signin .form-floating {
+			margin-bottom: 20px;
+		}
+
+		.form-signin .form-floating input {
+			height: auto;
+		}
+
+		.form-signin .btn-block {
+			margin-top: 20px;
+		}
+
+		/* Ajoutez les styles suivants */
+		#background {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+
+		.background-color {
+			background-color: #f8f9fa;
+		}
+
+		.background-cover {
+			/* Choisissez l'image pour l'arrière-plan et ajustez la propriété background-size au besoin */
+			/* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsoNUrlgeRAT8LWCllQAbtZqWQJftp1cKTfEC3Wf-Y53qgPtly_0glNi-EOVhhiecszU0&usqp=CAU"); */
+			background-size: cover;
+		}
+		.justify-content-center {
+			justify-content: center !important;
+			background-color: #f8f9fa;
+
+
+		}
+		.row {
+			position: relative;
+			overflow: hidden;
+			/* background-color: grey; */
+			background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsoNUrlgeRAT8LWCllQAbtZqWQJftp1cKTfEC3Wf-Y53qgPtly_0glNi-EOVhhiecszU0&usqp=CAU");
+
+		}
+
+		#particles-js {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div id="background" class="background-color"></div>
+
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<form class="form-signin" method="post">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<h1 class="h3 mb-3 font-weight-normal text-center">Veuillez vous connecter</h1>
+
+				<div class="form-floating">
+					<input type="text" name="matricule" id="inputMatricule" class="form-control" autocomplete="current-matricule" required autofocus>
+					<label for="inputMatricule">
+						<i class="fas fa-user"></i>
+						Matricule
+					</label>
+				</div>
+
+				<div class="form-floating">
+					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+					<label for="inputPassword">
+						<i class="fas fa-lock"></i>
+						Mot de passe
+					</label>
+				</div>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+				<button class="btn btn-primary btn-lg btn-block" type="submit">
+					<i class="fas fa-sign-in-alt"></i>
+					Se connecter
+				</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			{% if app.user %}
+				<div class="mb-3">
+					Vous êtes connecté en tant que
+					{{ app.user.matricule }},
+					<a href="{{ path('app_logout') }}">Déconnexion</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-abcdefghijklmnopqrstuvwxyz" crossorigin="anonymous"></script>
+{% endblock %}

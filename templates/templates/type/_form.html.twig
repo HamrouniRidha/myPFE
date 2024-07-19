@@ -1,0 +1,11 @@
+{{ form_start(form_type) }}
+<div class="form-group">
+	{{ form_row(form_type.type, {
+    'label': 'Type *',
+    'required': true,
+    'attr': {'placeholder': 'Type de stage'}
+  }) }}
+</div>
+
+<input type="submit" value="{{ valeurBtnSubmit|default('Ajouter ') }}" class="btn btn-primary">
+{{ form_end(form_type) }}

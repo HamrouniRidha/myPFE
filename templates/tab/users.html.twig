@@ -1,0 +1,35 @@
+{% extends "template.html.twig" %}
+{% block title %}
+	Liste des utilisateurs
+{% endblock %}
+{% block PageTitle %}
+	Liste des utilisateurs
+{% endblock %}
+
+
+{% block body %}
+
+	<table class="table">
+
+		<tr class="table-active">
+			<th>Matricule</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Actions</th>
+		</tr>
+
+
+		{% for user in users %}
+			<tr>
+				<td>{{ user.Matricule }}</td>
+				<td>{{ user.firstName }}</td>
+				<td>{{ user.Name }}</td>
+				<td>
+					<a href="{{ path('stage') }}">Edit</a>
+					<a href="{{ path('stage') }}">Delete</a>
+				</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+{% endblock %}

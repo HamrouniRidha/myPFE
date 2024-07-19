@@ -1,0 +1,52 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Liste des stagiaires
+{% endblock %}
+
+{% block PageTitle %}Liste des stagiaires
+{% endblock %}
+
+{% block body %}
+	{% for message in app.session.flashBag.get('info')%}
+		<div class="alert alert-info">
+			{{message}}
+		</div>
+	{% endfor %}
+	{% for message in app.session.flashBag.get('success')%}
+		<div class="alert alert-success">
+			{{message}}
+		</div>
+	{% endfor %}
+	{% for message in app.session.flashBag.get('error')%}
+		<div class="alert alert-danger">
+			{{message}}
+		</div>
+	{% endfor %}
+
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">CIN</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">Mail</th>
+				<th scope="col">Téléphone</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for stagiaire in stagiaires %}
+				<tr>
+					<td>{{ stagiaire.cin }}</td>
+					<td>{{ stagiaire.nom }}</td>
+					<td>{{ stagiaire.prenom }}</td>
+					<td>{{ stagiaire.mail }}</td>
+					<td>{{ stagiaire.tel }}</td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

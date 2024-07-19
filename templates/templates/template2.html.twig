@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<meta name="description" content=""/>
+		<meta name="author" content=""/>
+		<link rel="stylesheet" href="{{ asset('styles.css') }}">
+		<style>
+
+			body {
+				background-color: #f2f2f2; /* Remplacez par la couleur de votre choix */
+			}
+			.navbar-brand img {
+				height: 40px; /* Ajustez la hauteur du logo selon vos besoins */
+				width: auto; /* La largeur sera automatiquement calculée en conservant les proportions de l'image */
+				vertical-align: middle; /* Alignement vertical du logo avec le texte de la navbar */
+				margin-right: 10px; /* Espacement à droite du logo, ajustez selon vos préférences */
+				background-color: black; /* Rendre l'arrière-plan transparent */
+
+			}
+			.navbar-brand img {
+				background-color: transparent; /* Rendre l'arrière-plan transparent */
+			}
+		</style>
+		<title>
+
+			{% block title %}
+
+				Acceuil
+			{% endblock %}
+
+		</title>
+		<link href="{{asset('assets/css/styles.css')}}" rel="stylesheet"/> {% block stylesheets %}{% endblock %}
+		<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+	</head>
+	<body>
+
+		<nav
+			class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+			<!-- Navbar Brand-->
+			<li class="nav-item">
+				<a class="navbar-brand" href="#">
+					<img src="data:image/png;base64,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" alt="Logo CPG">
+				</a>
+			</li>
+			<a class="navbar-brand ps-3" href="{{ path('template') }}">Gestion suivi des stages</a>
+			<!-- Sidebar Toggle-->
+			<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+				<i class="fas fa-bars"></i>
+			</button>
+			<!-- Navbar Search-->
+			<form
+				class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"><!-- Votre code de recherche ici -->
+			</form>
+			<!-- Navbar-->
+			{% if app.user %}
+				<li class="nav-item" style="color: #f2f2f2;">
+					{{ app.user.matricule }}
+				</li>
+
+				<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_login') }}">
+							<i class="fas fa-sign-out-alt"></i>
+							Logout
+						</a>
+					</li>
+
+				</ul>
+			{% endif %}
+
+
+		</nav>
+		{# </body>
+		</html></nav></div><div id="layoutSidenav_content"><main> #}
+		<div class="container-fluid px-4">
+			<h1 class="mt-4"> {% block PageTitle %}{% endblock %}
+				</h1>
+				<div class="card mb-4">
+					<div class="card-body">
+						{% block body %}
+							<div class="row">
+								<style>
+									.card {
+										transition: transform 0.3s;
+										margin: 10px;
+										padding: 10px;
+									}
+
+									.card:hover {
+										transform: scale(1.05);
+									}
+									body {
+										background-color: #f2f2f2; /* Remplacez par la couleur de votre choix */
+									}
+								</style>
+
+								<div class="row">
+									<div class="col-md-4">
+										<div class="card bg-primary text-white">
+											<div class="card-body">
+												<div class="d-flex justify-content-center mb-3">
+													<i class="fas fa-users fa-5x"></i>
+												</div>
+												<h5 class="card-title text-center">Stagiaires</h5>
+												<p class="card-text">Gérez les informations des stagiaires inscrits.</p>
+												<a href="{{ path('app_stagiaire') }}" class="btn btn-light">En savoir plus</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card bg-secondary text-white">
+											<div class="card-body">
+												<div class="d-flex justify-content-center mb-3">
+													<i class="fas fa-building fa-5x"></i>
+												</div>
+												<h5 class="card-title text-center">Etablissements</h5>
+												<p class="card-text">Gérez les informations sur les établissements des stagiaires.</p>
+												<a href="{{ path('app_etablissement_list') }}" class="btn btn-light">En savoir plus</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="card bg-success text-white">
+											<div class="card-body">
+												<div class="d-flex justify-content-center mb-3">
+													<i class="fas fa-briefcase fa-5x"></i>
+												</div>
+												<h5 class="card-title text-center">Stages</h5>
+												<p class="card-text">Consultez et gérez les informations sur les stages en cours.</p>
+												<a href="stage" class="btn btn-light">En savoir plus</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card bg-info text-white">
+											<div class="card-body">
+												<div class="d-flex justify-content-center mb-3">
+													<i class="fas fa-chart-line fa-5x"></i>
+												</div>
+												<h5 class="card-title text-center">Évaluations</h5>
+												<p class="card-text">Effectuez les évaluations des stagiaires et suivez leur progression.</p>
+												<a href="#" class="btn btn-light">En savoir plus</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card bg-warning text-white">
+											<div class="card-body">
+												<div class="d-flex justify-content-center mb-3">
+													<i class="fas fa-tags fa-5x"></i>
+												</div>
+												<h5 class="card-title text-center">Types de stage</h5>
+												<p class="card-text">Gérez les différents types de stage proposés.</p>
+												<a href="#" class="btn btn-light">En savoir plus</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+						{% endblock %}
+						<footer class="py-4 bg-light mt-auto">
+							<div class="container-fluid px-4">
+								<div class="d-flex align-items-center justify-content-between small">
+									<div class="text-muted">Copyright &copy;  2023</div>
+
+									<div>
+										<a href="#">Privacy Policy</a>
+										&middot;
+										<a href="#">Terms &amp; Conditions</a>
+									</div>
+								</div>
+							</div>
+						</footer>

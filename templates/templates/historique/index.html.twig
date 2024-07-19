@@ -1,0 +1,35 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Nouvelles stagiaires
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2>Garder l'historique d'un stagiaire</h2>
+		{{ form_start(form_historique) }}
+		{{ form_row(form_historique.stagiaire) }}
+		{{ form_row(form_historique.etablissement) }}
+		{{ form_label(form_historique.certificat) }}
+		{{ form_widget(form_historique.certificat, {'choices': {
+            'Option 1': 'option1',
+            'Option 2': 'option2',
+            'Option 3': 'option3',
+        }}) }}
+		{{ form_row(form_historique.annee, {'attr': {'placeholder': "yyyy"}}) }}
+		<input type="submit" value="Enregistrer">
+		{{ form_end(form_historique) }}
+
+		<hr>
+
+		<div class="btn-group">
+			<a href="{{ path('stagiaire_create') }}" class="btn btn-primary">
+				<i class="fas fa-plus"></i>
+				Créer un nouveau stagiaire
+			</a>
+			<a href="{{ path('app_etablissement_create') }}" class="btn btn-success">
+				<i class="fas fa-plus"></i>
+				Créer un nouvel établissement
+			</a>
+		</div>
+	</div>
+{% endblock %}

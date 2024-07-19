@@ -1,0 +1,222 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Stages
+{% endblock %}
+{% block PageTitle %}{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center">
+	<h2>Stages</h2>
+	<div>
+
+
+		<a href="{{ path('app_departement') }}" class="btn btn-success custom-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewbox="0 0 16 16">
+				<path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
+			</svg>
+			Département
+		</a>
+
+
+		<a href="{{ path('app_encadrant') }}" class="btn btn-success custom-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewbox="0 0 16 16">
+				<path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
+			</svg>
+			Encadrant
+		</a>
+
+		<a href="{{ path('app_type') }}" class="btn btn-success custom-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewbox="0 0 16 16">
+				<path d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242-2.532-4.431zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24l2.552-4.467zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.498.498 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244l-1.716-3.004z"/>
+			</svg>
+			Type de stage
+		</a>
+		<a href="{{ path('addStage') }}" class="btn btn-primary">
+			<i class="fas fa-plus"></i>
+			Ajouter un stage
+		</a>
+	</div>
+
+</div>
+<form action="{{ path('stage') }}" method="GET" class="mb-3">
+	<div class="input-group">
+		<input type="text" name="search" class="form-control" placeholder="Rechercher">
+		<select name="criteria" class="form-select">
+			<option value="sujet">Sujet</option>
+
+		</select>
+		<button type="submit" class="btn btn-primary">Rechercher</button>
+	</div>
+</form>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Num Stage</th>
+			<th scope="col">Année</th>
+			<th scope="col">Sujet Stage</th>
+			<th scope="col">Type Stage</th>
+			<th scope="col">Matricule encadrant</th>
+			<th scope="col">Encadrant
+			</th>
+
+
+			<th scope="col">CIN Stagiaire</th>
+			<th scope="col">Nom Stagiaire</th>
+			<th scope="col">Prénom Stagiaire</th>
+			<th scope="col">Certificat Stagiaire</th>
+
+			<th scope="col">Date début</th>
+			<th scope="col">Date fin</th>
+
+			<th scope="col">Dossier de stage</th>
+
+			<th scope="col">Etat du stage</th>
+
+
+			{# <th scope="col">Documents</th> #}
+
+
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		{% for stage in stages %}
+			<tr>
+				<td>{{ stage.id }}</td>
+
+				{% if stage.historique is not null %}
+					<td>
+
+						{{ stage.historique.getAnnee }}
+					</td>
+				{% endif %}
+
+
+				<td>{{ stage.sujet }}</td>
+				<td>{{ stage.type }}</td>
+				<td>{{ stage.encadrant.matricule }}</td>
+				<td>{{ stage.encadrant }}</td>
+
+
+				{# <td>{{ stage.lieu }}</td> #}
+				{% if stage.historique is not null %}
+
+					<td>
+
+						{{ stage.historique.stagiaire.cin }}
+					</td>
+					<td>
+						{{ stage.historique.stagiaire.nom }}
+
+					</td>
+					<td>
+						{{ stage.historique.stagiaire.prenom }}
+
+					</td>
+					<td>
+
+						{{ stage.historique.certificat }}
+					</td>
+
+
+				{% endif %}
+
+				{# <td>{{ stage.stagiaire.nom }}</td>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																<td>{{ stage.stagiaire.prenom }}</td> #}
+				<td>
+					{{ stage.dateDebut|date('d/m/Y') }}
+				</td>
+				<td>
+					{{ stage.dateFin|date('d/m/Y') }}
+				</td>
+
+				<td>
+					{% if stage.documentFileName is defined and stage.documentFileName is iterable %}
+						{% for file in stage.documentFileName %}
+							<a href="{{ asset('uploads/images/' ~ file) }}" download>
+								{% if file ends with '.pdf' %}
+									<i class="fas fa-file-pdf"></i>
+								{% else %}
+									<i class="fas fa-download"></i>
+								{% endif %}
+							</a>
+						{% endfor %}
+					{% else %}
+						<p>Aucun fichier disponible</p>
+					{% endif %}
+				</td>
+				<td>
+					{{ stage.etat }}
+				</td>
+				{# <td>
+																																																																																																																																																																																											<select name="etat" onchange="pdateStageState(this.value, {{ stage.id }})">
+																																																																																																																																																																																												<option value="accepte" {% if stage.etat == 'accepte' %} selected {% endif %}>Accepté</option>
+																																																																																																																																																																																												<option value="en_cours" {% if stage.etat == 'en_cours' %} selected {% endif %}>En cours</option>
+																																																																																																																																																																																												<option value="refuse" {% if stage.etat == 'refuse' %} selected {% endif %}>Refusé</option>
+																																																																																																																																																																																											</select>
+																																																																																																																																																																																										</td> #}
+
+
+				{# <td>
+																																																																																																																																																																																																																																																																																																																																																														
+																																																																																																																																																																																																																																																																																																																																																																			{{ stage.etat }}
+																																																																																																																																																																																																																																																																																																																																																																		</td> #}
+				{# <td>
+																																																																																																																																																																																																																																																																																																			<select name="etat" onchange="updateStageState(this.value, {{ stage.id }})">
+																																																																																																																																																																																																																																																																																																				<option value="accepte" {% if stage.etat == 'accepte' %} selected {% endif %}>Accepté</option>
+																																																																																																																																																																																																																																																																																																				<option value="en_cours" {% if stage.etat == 'en_cours' %} selected {% endif %}>En cours</option>
+																																																																																																																																																																																																																																																																																																				<option value="refuse" {% if stage.etat == 'refuse' %} selected {% endif %}>Refusé</option>
+																																																																																																																																																																																																																																																																																																			</select>
+																																																																																																																																																																																																																																																																																																		</td> #}
+
+
+					<td>
+					{# <a href="{{ path('stage_show', {'id': stage.id}) }}" class="btn btn-info btn-sm" title="Visualiser">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewbox="0 0 16 16">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																									<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																									<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																								</svg>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																							</a> #}
+						<a href="{{ path('stage_edit', {'id': stage.id}) }}" class="btn btn-info btn-sm" title="Modifier"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewbox="0 0 16 16">
+							<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+						</svg>
+					</a>
+
+
+					<a href="{{ path('delete', {'id': stage.id}) }}" class="btn btn-danger btn-sm" title="Supprimer">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+							<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+							<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+						</svg>
+					</a>
+
+
+				</td>
+			</tr>
+		</tr>
+	</tbody>
+
+
+	<script>
+		function updateStageState(etat, stageId) {
+var data = {
+etat: etat
+};
+
+fetch('/updateStageState/' + stageId, {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify(data)
+}).then(response => response.json()).then(result => {
+console.log('État du stage mis à jour avec succès :', result);
+}).catch(error => {
+console.error('Erreur lors de la mise à jour de l\'état du stage :', error);
+});
+}
+	</script>
+
+
+</tbody></tr>{% endfor %}</tbody></table>{% endblock %}

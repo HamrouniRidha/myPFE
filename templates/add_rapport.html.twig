@@ -1,0 +1,10 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+	<h1>Ajouter des notes pour le stage</h1>
+
+	{{ form_start(formRapport) }}
+	{{ form_widget(formRapport) }}
+	<button type="submit">Sauvegarde les modifications</button>
+	{{ form_end(formRapport) }}
+{% endblock %}

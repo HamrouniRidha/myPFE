@@ -1,0 +1,11 @@
+{{ form_start(form_departement) }}
+<div class="form-group">
+	{{ form_row(form_departement.departement, {
+    'label': 'Département *',
+    'required': true,
+    'attr': {'placeholder': 'Departement'}
+  }) }}
+</div>
+
+<input type="submit" value="{{ valeurBtnSubmit|default('Ajouter le département') }}" class="btn btn-primary">
+{{ form_end(form_departement) }}

@@ -1,0 +1,37 @@
+{% extends "template.html.twig" %}
+
+{% block title %}{% endblock %}
+{% block PageTitle %}{% endblock %}
+
+{% block body %}
+
+
+{# {{ form(formSearchStagiaire) }} #}
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">CIN</th>
+			<th scope="col">Nom</th>
+			<th scope="col">Prénom</th>
+			<th scope="col">Mail</th>
+			<th scope="col">Téléphone</th>
+			<th scope="col">Établissement</th>
+			<th scope="col">Année</th>
+			<th scope="col">Certificat</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for historique in historiques %}
+			<tr>
+				<td>{{ historique.getStagiaire().getCin() }}</td>
+				<td>{{ historique.getStagiaire().getNom() }}</td>
+				<td>{{ historique.getStagiaire().getPrenom() }}</td>
+				<td>{{ historique.getStagiaire().getMail() }}</td>
+				<td>{{ historique.getStagiaire().getTel() }}</td>
+				<td>{{ historique.getEtablissement() }}</td>
+				<td>{{ historique.getAnnee() }}</td>
+				<td>{{ historique.getCertificat() }}</td>
+			</tr>
+		</a>
+	</tbody>
+</tr></td></tbody></tr>{% endfor %}</tbody></table>{% endblock %}

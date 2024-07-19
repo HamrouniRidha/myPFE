@@ -1,0 +1,134 @@
+{% extends 'template.html.twig' %}
+{% block title %}Nouvel stagiaire
+{% endblock %}
+
+{% block body %}
+	{% for message in app.session.flashBag.get('success') %}
+		<div class="alert alert-success">
+			{{message}}
+		{% endfor %}
+	</div>
+	<style>
+		.retour-link {
+			color: #333;
+			text-decoration: none;
+		}
+
+		.retour-link i {
+			margin-right: 0;
+		}
+
+		.retour-link:hover {
+			color: #666;
+		}
+	</style>
+	<div class="retour">
+		<a href="{{ path('addStage') }}" class="btn btn-link retour-link">
+			<i class="fas fa-arrow-left"></i>
+			Ajouter un stage
+		</a>
+
+		<a href="{{ path('app_stagiaire') }}" class="btn btn-link retour-link">
+			<i class="fas fa-arrow-left"></i>
+			Liste des stagiaires
+		</a>
+	</div>
+	<div class="d-flex justify-content-center">
+		<div class="col-lg-6 my-form-container">
+			<h2>Ajout d'un stagiaire</h2>
+			<div class="d-flex justify-content-center">
+				<div class="col-lg-6">
+					{{ include("stagiaire/_form.html.twig") }}
+				</div>
+			</div>
+		</div>
+	</div>
+	<style>
+		.my-form-container {
+			max-width: 5000px;
+			width: 100%;
+			padding: 0;
+			margin-top: 0;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		.my-form-class {
+			background-color: transparent;
+			padding: 15px;
+			width: 100%;
+			margin: 0;
+			border-radius: 10px;
+			borde: 1 solid
+		}
+
+		body {
+			background-color: #f2f2f2; /* Couleur d'arrière-plan */
+		}
+
+		.my-form-class label {
+			font-weight: transparent;
+		}
+
+		.my-form-class input[type="text"],
+		.my-form-class input[type="email"],
+		.my-form-class input[type="tel"] {
+			border-radius: 10px;
+			border: 1 solid #ccc;
+			padding: 12px;
+			font-size: 16px;
+			width: 100%;
+		}
+
+		.my-form-class input[type="text"]:focus,
+		.my-form-class input[type="email"]:focus,
+		.my-form-class input[type="tel"]:focus {
+			border-color: #6e9fe5;
+			box-shadow: 0 0 5px #6e9fe5;
+		}
+
+		.my-form-class input[type="submit"] {
+			background-color: #6e9fe5;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+			margin-top: 10px;
+			width: 100%;
+		}
+
+		.my-form-class input[type="submit"]:hover {
+			background-color: #5577c9;
+		}
+
+		@media(max-width: 767px) {
+			.my-form-container {
+				padding: 10px;
+			}
+		}
+
+		@media print {
+			input[type="submit"] {
+				display: none;
+			}
+		}
+
+		.my-card {
+			display: none;
+		}
+
+		.col-md-4 {
+			display: none;
+		}
+
+		.card {
+			border: none;
+			background-color: #f2f2f2;
+		}
+	</style>
+{% endblock %}

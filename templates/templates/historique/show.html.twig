@@ -1,0 +1,98 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Liste des stagiaires
+{% endblock %}
+{% block PageTitle %}{% endblock %}
+
+{% block body %}
+<form action="{{ path('app_stagiaire') }}" method="GET" class="mb-3">
+	<div class="input-group">
+		<input type="text" name="search" class="form-control" placeholder="Rechercher">
+		<select name="criteria" class="form-select">
+			<option value="cin">CIN</option>
+			<option value="nom">Nom</option>
+			<option value="prenom">Prénom</option>
+		</select>
+		<button type="submit" class="btn btn-primary">Rechercher</button>
+
+	</div>
+</form>
+
+
+<div class="d-flex justify-content-between align-items-center">
+	<h3></h3>
+	{# <a href="{{ path('stagiaire_create') }}" class="btn btn-primary">
+																																																																																																																						<i class="bi bi-plus"></i>
+																																																																																																																						Ajouter stagiaire
+																																																																																																																					</a> #}
+
+	<div>
+
+		<a href="{{ path('affecte') }}" class="btn btn-success">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check" viewbox="0 0 16 16">
+				<path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+				<path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+			</svg>
+			Stagiaires affectés
+		</a>
+		<a href="{{ path('refuse') }}" class="btn btn-danger">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-x-fill" viewbox="0 0 16 16">
+				<path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM6.854 5.146a.5.5 0 1 0-.708.708L7.293 7 6.146 8.146a.5.5 0 1 0 .708.708L8 7.707l1.146 1.147a.5.5 0 1 0 .708-.708L8.707 7l1.147-1.146a.5.5 0 0 0-.708-.708L8 6.293 6.854 5.146z"/>
+			</svg>
+			Demandeurs refusés
+		</a>
+		<a href="{{ path('app_etablissement') }}" class="btn btn-primary custom-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-fill-gear" viewbox="0 0 16 16">
+				<path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.493 4.493 0 0 0 12.5 8a4.493 4.493 0 0 0-3.59 1.787A.498.498 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.476 4.476 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1V1Zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5Zm3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1ZM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5ZM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5ZM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
+				<path d="M11.886 9.46c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
+			</svg>
+			Mise à jour Etablissement
+
+		</a>
+		<a href="{{ path('app_stagiaire') }}" class="btn btn-primary custom-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-gear" viewbox="0 0 16 16">
+				<path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm9.886-3.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
+			</svg>
+			Mise à jour Stagiaire
+		</a>
+
+
+		{# <a href="{{ path('stagiaire_create') }}" class="btn btn-primary">
+																																																																																							<i class="fas fa-plus"></i>
+																																																																																							Ajouter Stagiaire
+																																																																																						</a> #}
+
+	</div>
+
+</div>
+
+
+{# {{ form(formSearchStagiaire) }} #}
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">CIN</th>
+			<th scope="col">Nom</th>
+			<th scope="col">Prénom</th>
+			<th scope="col">Mail</th>
+			<th scope="col">Téléphone</th>
+			<th scope="col">Établissement</th>
+			<th scope="col">Année</th>
+			<th scope="col">Certificat</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for historique in historiques %}
+			<tr>
+				<td>{{ historique.getStagiaire().getCin() }}</td>
+				<td>{{ historique.getStagiaire().getNom() }}</td>
+				<td>{{ historique.getStagiaire().getPrenom() }}</td>
+				<td>{{ historique.getStagiaire().getMail() }}</td>
+				<td>{{ historique.getStagiaire().getTel() }}</td>
+				<td>{{ historique.getEtablissement() }}</td>
+				<td>{{ historique.getAnnee() }}</td>
+				<td>{{ historique.getCertificat() }}</td>
+			</tr>
+		</a>
+	</tbody>
+</tr></td></tbody></tr>{% endfor %}</tbody></table>{% endblock %}

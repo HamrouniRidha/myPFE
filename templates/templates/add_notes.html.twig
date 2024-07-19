@@ -1,0 +1,12 @@
+{# add_notes.html.twig #}
+
+{% extends 'template.html.twig' %}
+
+{% block body %}
+	<h1>Ajouter des notes pour le stage</h1>
+
+	{{ form_start(formNotes) }}
+	{{ form_widget(formNotes) }}
+	<button type="submit">Sauvegarde les modifications</button>
+	{{ form_end(formNotes) }}
+{% endblock %}

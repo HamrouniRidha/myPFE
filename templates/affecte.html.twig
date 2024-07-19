@@ -1,0 +1,166 @@
+{% extends "template.html.twig" %}
+
+{% block title %}Liste des stages
+{% endblock %}
+{% block PageTitle %}{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center">
+	<h1>Liste des stages</h1>
+
+</div>
+<form action="{{ path('stage') }}" method="GET" class="mb-3">
+	<div class="input-group">
+		<input type="text" name="search" class="form-control" placeholder="Rechercher">
+		<select name="criteria" class="form-select">
+			<option value="sujet">Sujet</option>
+
+		</select>
+		<button type="submit" class="btn btn-primary">Rechercher</button>
+	</div>
+</form>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">ID Stage</th>
+			<th scope="col">Année</th>
+			<th scope="col">CIN Stagiaire</th>
+			<th scope="col">Nom Stagiaire</th>
+			<th scope="col">Prénom Stagiaire</th>
+			<th scope="col">Sujet Stage</th>
+			<th scope="col">Matricule Stage</th>
+
+			<th scope="col">Encadrant
+			</th>
+			<th scope="col">Décision
+			</th>
+			{# <th scope="col">Date début</th>
+																																																																					<th scope="col">Date fin</th> #}
+
+
+		</tr>
+	</thead>
+	<tbody>
+
+		{% for stage in stages %}
+			{%  if stage.etat == 'Accepter' %}
+
+
+				<tr>
+					<td>{{ stage.id }}</td>
+
+					{% if stage.historique is not null %}
+						<td>
+
+							{{ stage.historique.getAnnee }}
+						</td>
+					{% endif %}
+					{% if stage.historique is not null %}
+
+						<td>
+
+							{{ stage.historique.stagiaire.cin }}
+						</td>
+						<td>
+							{{ stage.historique.stagiaire.nom }}
+
+						</td>
+						<td>
+							{{ stage.historique.stagiaire.prenom }}
+
+						</td>
+
+
+						<td>{{ stage.sujet }}</td>
+						<td>
+							{{ stage.encadrant.matricule }}
+						</td>
+						<td>
+							{{ stage.encadrant }}
+						</td>
+						<td>
+							{{ stage.etat }}
+						</td>
+
+
+					{% endif %}
+
+					{# <td>{{ stage.stagiaire.nom }}</td>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<td>{{ stage.stagiaire.prenom }}</td> #}
+					{# <td>
+																																																																																																														{{ stage.dateDebut|date('d/m/Y') }}
+																																																																																																													</td>
+																																																																																																													<td>
+																																																																																																														{{ stage.dateFin|date('d/m/Y') }}
+																																																																																																													</td> #}
+
+
+					{# <td>
+																																																																																																																																																																																																																																																																																																					{% if stage.documentFileName is defined and stage.documentFileName is iterable %}
+																																																																																																																																																																																																																																																																																																						{% for file in stage.documentFileName %}
+																																																																																																																																																																																																																																																																																																							{% if file ends with '.pdf' %}
+																																																																																																																																																																																																																																																																																																								<embed src="{{ asset('uploads/images/' ~ file) }}" type="application/pdf" width="75" height="75">
+																																																																																																																																																																																																																																																																																																								<a href="{{ asset('uploads/images/' ~ file) }}" download>
+																																																																																																																																																																																																																																																																																																									<i class="fas fa-file-pdf"></i>
+																																																																																																																																																																																																																																																																																																								</a>
+																																																																																																																																																																																																																																																																																																							{% else %}
+																																																																																																																																																																																																																																																																																																								<img src="{{ asset('uploads/images/' ~ file) }}" alt="Image" style="width: 50px; height: 50px;">
+																																																																																																																																																																																																																																																																																																								<a href="{{ asset('uploads/images/' ~ file) }}" download>
+																																																																																																																																																																																																																																																																																																									<i class="fas fa-download"></i>
+																																																																																																																																																																																																																																																																																																								</a>
+																																																																																																																																																																																																																																																																																																							{% endif %}
+																																																																																																																																																																																																																																																																																																						{% endfor %}
+																																																																																																																																																																																																																																																																																																					{% else %}
+																																																																																																																																																																																																																																																																																																						<p>Aucun fichier disponible</p>
+																																																																																																																																																																																																																																																																																																					{% endif %}
+																																																																																																																																																																																																																																																																																																				</td> #}<td>
+						{# <a href="{{ path('stage_notes', {'id': stage.id}) }}" class="btn btn-info btn-sm" title="Evaluer"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check" viewbox="0 0 16 16">
+																																												<path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+																																												<path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+																																											</svg>
+																																										</a> #}
+						{# <a href="{{ path('stage_edit', {'id': stage.id}) }}" class="btn btn-primary btn-sm" title="Modifier">
+																																																																																																																																																				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewbox="0 0 16 16">
+																																																																																																																																																					<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+																																																																																																																																																				</svg>
+																																																																																																																																																			</a>
+																																																																																																																																														
+																																																																																																																																														
+																																																																																																																																																			<a href="{{ path('delete', {'id': stage.id}) }}" class="btn btn-danger btn-sm" title="Supprimer">
+																																																																																																																																																				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+																																																																																																																																																					<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+																																																																																																																																																					<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+																																																																																																																																																				</svg>
+																																																																																																																																																			</a> #}
+					</td>
+				{% endif %}
+
+			</tr>
+		</tbody>
+	</tbody>
+</tbody></tr></tbody><script>function generateAndDownloadCertificate(sujet, dateDebut, dateFin) {
+var data = {
+
+sujet: sujet,
+dateDebut: dateDebut,
+dateFin: dateFin
+};
+
+fetch('/generateCertificate', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify(data)
+}).then(response => response.blob()).then(blob => {
+const url = window.URL.createObjectURL(new Blob([blob]));
+const link = document.createElement('a');
+link.href = url;
+link.setAttribute('download', 'attestation.pdf');
+document.body.appendChild(link);
+link.click();
+link.parentNode.removeChild(link);
+}).catch(error => {
+console.error('Error:', error);
+});
+}</script></tbody></tr>{% endfor %}</tbody></table>{% endblock %}

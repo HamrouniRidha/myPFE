@@ -1,0 +1,25 @@
+{{ form_start(form_etablissement) }}
+<div class="form-group">
+	{{ form_row(form_etablissement.nom, {
+    'label': 'Nom *',
+    'required': true,
+    'attr': {'placeholder': 'Nom'}
+  }) }}
+</div>
+<div class="form-group">
+	{{ form_row(form_etablissement.lieu, {
+    'label': 'Lieu *',
+    'required': true,
+    'attr': {'placeholder': 'Lieu'}
+  }) }}
+</div>
+<div class="form-group">
+	{{ form_row(form_etablissement.type, {
+    'label': 'Type *',
+    'required': true,
+    'attr': {'placeholder': 'Type'}
+  }) }}
+</div>
+
+<input type="submit" value="{{ valeurBtnSubmit|default('Ajouter ') }}" class="btn btn-primary">
+{{ form_end(form_etablissement) }}

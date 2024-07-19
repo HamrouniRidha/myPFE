@@ -1,0 +1,160 @@
+{% extends 'template.html.twig' %}
+{% block title %}Modification d'un stage
+{% endblock %}
+{% block PageTitle %}{% endblock %}
+
+{% block body %}
+<h2>Modifier un stage</h2>
+<div class="d-flex justify-content-center">
+	<div class="col-lg-6 my-form-container">
+		<div class="d-flex justify-content-center">
+			<div class="col-lg-6">
+				{{ form_start(formStage, {'attr': {'class': 'my-form-class border'}}) }}
+				<div class="form-group">
+					{{ form_label(formStage.historique, 'Historique', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.historique, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				{# <div class="form-group">
+																																																																																																																													{{ form_label(formStage.stagiaire, 'Stagiaire', {'label_attr': {'class': 'form-label'}}) }}
+																																																																																																																													{{ form_widget(formStage.stagiaire, {'attr': {'class': 'form-control select2', 'placeholder': 'Entrez le nom du stagiaire'}}) }}
+																																																																																																																												</div> #}
+				<div class="form-group">
+					{{ form_label(formStage.sujet, 'Sujet du stage', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.sujet, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le sujet du stage'}}) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(formStage.date_debut, 'Date de début', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.date_debut, {'attr': {'class': 'form-control', 'placeholder': 'Sélectionnez la date de début'}}) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(formStage.date_fin, 'Date de fin', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.date_fin, {'attr': {'class': 'form-control', 'placeholder': 'Sélectionnez la date de fin'}}) }}
+				</div>
+				{# <div class="form-group">
+																																																																																																																									{{ form_label(formStage.lieu, 'Lieu', {'label_attr': {'class': 'form-label'}}) }}
+																																																																																																																									{{ form_widget(formStage.lieu, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le lieu du stage'}}) }}
+																																																																																																																								</div> #}
+				<div class="form-group">
+					{{ form_label(formStage.type, 'Types', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.type, {'attr': {'class': 'form-control', 'placeholder': 'Sélectionnez le type de stage'}}) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(formStage.departement, 'Departement', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.departement, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+				</div>
+				<div class="form-group">
+					{{ form_label(formStage.encadrant, 'Encadrant', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.encadrant, {'attr': {'class': 'form-control', 'placeholder': 'Sélectionnez un encadrant'}}) }}
+				</div>
+				{# <div class="form-group">
+									{{ form_label(formStage.etat) }}
+									{{ form_widget(formStage.etat, { 'attr': {'class': 'form-control', 'placeholder': 'État du stage', 'value': 'en_cours'} }) }}
+								</div> #}
+				<div class="form-group">
+					{{ form_label(formStage.photo, 'Dossier de stage (ZIP)', {'label_attr': {'class': 'form-label'}}) }}
+					{{ form_widget(formStage.photo, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+				</div>
+
+
+				<input type="submit" value="{{ valeurBtnSubmit|default("Sauvegarde les modifications") }}" class="btn btn-primary">
+				{{ form_end(formStage) }}
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<style>
+
+	.col-form-label{
+									display:none;
+								}
+									.my-form-container {
+																																																									max-width: 5000px;
+																																																									width: 100%;
+																																																									padding: 0;
+																																																									margin-top: 0;
+																																																								}
+																																																						
+																																																						h2{
+																																																							text-align:center;
+																																																						}
+																																																								.my-form-class {
+																																																									background-color: transparent;
+																																																									padding: 15px;
+																																																									width: 100%;
+																																																									margin: 0;
+																																																									border-raduis:10px;
+																																																								}
+																																																								body {
+																																																									background-color: #f2f2f2; Couleur d'arrière-plan
+																																																								}
+																																																								.my-form-class label {
+																																																									font-weight: transparent;
+																																																								}
+																																																						
+																																																								.my-form-class input[type="text"],
+																																																								.my-form-class input[type="date"],
+																																																								.my-form-class select {
+																																																									border-radius: 10px;
+																																																									border: 1 solid #ccc;
+																																																									padding: 12px;
+																																																									font-size: 16px;
+																																																									width: 100%;
+																																																								}
+																																																						
+																																																								.my-form-class input[type="text"]:focus,
+																																																								.my-form-class input[type="date"]:focus,
+																																																								.my-form-class select:focus {
+																																																									border-color: #6e9fe5;
+																																																									box-shadow: 0 0 5px #6e9fe5;
+																																																								}
+																																																						
+																																																								.my-form-class input[type="submit"] {
+																																																									background-color: #6e9fe5;
+																																																									color: #fff;
+																																																									border: none;
+																																																									border-radius: 5px;
+																																																									padding: 10px 20px;
+																																																									font-size: 16px;
+																																																									cursor: pointer;
+																																																									transition: background-color 0.2s ease;
+																																																									margin-top: 10px;
+																																																									width: 100%;
+																																																								}
+																																																						
+																																																								.my-form-class input[type="submit"]:hover {
+																																																									background-color: #5577c9;
+																																																								}
+																																																						
+																																																								@media(max-width: 767px) {
+																																																									.my-form-container {
+																																																										padding: 10px;
+																																																									}
+																																																								}
+																																																						
+																																																								@media print {
+																																																									input[type="submit"] {
+																																																										display: none;
+																																																									}
+																																																								}
+																																																						
+																																																								.my-card {
+																																																									display: none;
+																																																						
+																																																								}
+																																																						
+																																																								.col-md-4 {
+																																																									display: none;
+																																																								}
+																																																						
+																																																								.card {
+																																																									border: none;
+																																																									background-color: #f2f2f2;
+																																																								}
+																																																								element.style {
+												
+											display:none;			}
+																																																							</style>
+																																							
+																																							{% endblock %}
